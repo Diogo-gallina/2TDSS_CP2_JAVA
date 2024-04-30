@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,5 +25,8 @@ public class Category {
 
     @Column(name = "description", nullable = false, length = 150)
     private String description;
+
+    @OneToOne(mappedBy = "category")
+    private Event event;
 
 }

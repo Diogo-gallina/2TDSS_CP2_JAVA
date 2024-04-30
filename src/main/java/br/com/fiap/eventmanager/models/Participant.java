@@ -4,9 +4,11 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -32,10 +34,20 @@ public class Participant {
     private String cellPhone;
 
     @Column(name = "created_at", nullable = false)
-    @GeneratedValue
+    @CreatedDate
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "participant")
+    private List<Address> addresses;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "Registration",
+            joinColumns = @JoinColumn(name = "participant_id"),
+            inverseJoinColumns = @JoinColumn(name = "event_id")
+    )
+    private List<Event> events;
 
 }

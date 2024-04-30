@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter @Setter
 @NoArgsConstructor
@@ -37,5 +38,15 @@ public class Event {
 
     @Column(name = "registration_value", nullable = false)
     private BigDecimal registrationValue;
+
+    @OneToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
+
+    @OneToMany(mappedBy = "event")
+    private List<Address> addresses;
+
+    @ManyToMany(mappedBy = "events", fetch = FetchType.LAZY)
+    private List<Participant> participants;
 
 }
