@@ -1,6 +1,12 @@
 package br.com.fiap.eventmanager.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter @Setter
+@NoArgsConstructor
 
 @Entity
 @Table(name = "JV_CP2_ADDRESS")
