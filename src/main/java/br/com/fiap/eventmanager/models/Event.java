@@ -38,4 +38,8 @@ public class Event {
     @Column(name = "registration_value", nullable = false)
     private BigDecimal registrationValue;
 
+    @OneToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
+
 }

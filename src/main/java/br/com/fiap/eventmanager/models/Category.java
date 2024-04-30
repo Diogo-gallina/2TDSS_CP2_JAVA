@@ -24,4 +24,7 @@ public class Category {
     @Column(name = "description", nullable = false, length = 150)
     private String description;
 
+    @OneToOne(mappedBy = "category")
+    private Event event;
+
 }
