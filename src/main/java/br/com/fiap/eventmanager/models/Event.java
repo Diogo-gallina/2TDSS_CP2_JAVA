@@ -1,9 +1,6 @@
 package br.com.fiap.eventmanager.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,9 +13,10 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "JV_CP2_EVENT")
-public class event {
+public class Event {
 
     @Id
+    @GeneratedValue
     @Column(name = "event_id")
     private Long id;
 
