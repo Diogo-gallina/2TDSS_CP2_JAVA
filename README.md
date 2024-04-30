@@ -1,3 +1,3 @@
-Modelo relacional do projeto:
+Relational Model:
 
 ![img.png](img.png)
