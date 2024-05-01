@@ -41,7 +41,7 @@ public class Event {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "event_details_id", nullable = false)
-    private EventDetail eventDetail;
+    private EventDetails eventDetails;
 
     @OneToMany(mappedBy = "event", cascade = CascadeType.REMOVE)
     private List<Address> addresses;

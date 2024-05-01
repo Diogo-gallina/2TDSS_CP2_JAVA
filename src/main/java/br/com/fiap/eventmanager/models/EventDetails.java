@@ -11,7 +11,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "JV_CP2_EVENT_DETAILS")
-public class EventDetail {
+public class EventDetails {
 
     @Id
     @GeneratedValue
