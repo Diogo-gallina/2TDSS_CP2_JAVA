@@ -39,11 +39,11 @@ public class Event {
     @Column(name = "registration_value", nullable = false)
     private BigDecimal registrationValue;
 
-    @OneToOne
-    @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "event_details_id", nullable = false)
+    private EventDetail eventDetail;
 
-    @OneToMany(mappedBy = "event")
+    @OneToMany(mappedBy = "event", cascade = CascadeType.REMOVE)
     private List<Address> addresses;
 
     @ManyToMany(mappedBy = "events", fetch = FetchType.LAZY)

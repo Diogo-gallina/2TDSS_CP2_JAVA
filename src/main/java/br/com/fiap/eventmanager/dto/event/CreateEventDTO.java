@@ -1,5 +1,7 @@
 package br.com.fiap.eventmanager.dto.event;
 
+import br.com.fiap.eventmanager.models.EventTypeEnum;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -16,9 +18,11 @@ public record CreateEventDTO(
 
         BigDecimal registrationValue,
 
-        String categoryName,
+        String organizationName,
 
-        String description
+        String organizationEmail,
+
+        EventTypeEnum eventType
 
 ) {
 }

@@ -40,7 +40,7 @@ public class Participant {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @OneToMany(mappedBy = "participant")
+    @OneToMany(mappedBy = "participant", cascade = CascadeType.REMOVE)
     private List<Address> addresses;
 
     @ManyToMany(fetch = FetchType.LAZY)
