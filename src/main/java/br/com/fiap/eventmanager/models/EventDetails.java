@@ -1,5 +1,6 @@
 package br.com.fiap.eventmanager.models;
 
+import br.com.fiap.eventmanager.dto.event.CreateEventDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,4 +30,10 @@ public class EventDetails {
 
     @OneToOne(mappedBy = "eventDetail")
     private Event event;
+
+    public EventDetails(CreateEventDTO eventDTO) {
+        organizationName = eventDTO.organizationName();
+        organizationEmail = eventDTO.organizationEmail();
+        eventType = eventDTO.eventType();
+    }
 }
