@@ -29,11 +29,11 @@ public class Address {
     @Column(name = "address_number", nullable = false)
     private Number number;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "event_id")
     private Event event;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "participant_id")
     private Participant participant;
 

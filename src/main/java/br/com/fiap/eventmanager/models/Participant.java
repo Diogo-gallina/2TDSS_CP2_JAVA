@@ -1,5 +1,6 @@
 package br.com.fiap.eventmanager.models;
 
+import br.com.fiap.eventmanager.dto.participant.CreateParticipantDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -50,4 +51,9 @@ public class Participant {
     )
     private List<Event> events;
 
+    public Participant(CreateParticipantDTO participantDTO) {
+        name = participantDTO.name();
+        email = participantDTO.email();
+        cellPhone = participantDTO.cellPhone();
+    }
 }
