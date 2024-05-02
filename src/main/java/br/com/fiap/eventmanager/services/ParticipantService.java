@@ -33,4 +33,9 @@ public class ParticipantService {
         return new ParticipantDetailsDTO(participant);
     }
 
+    @Transactional
+    public void delete(Long participantId){
+        participantRepository.deleteById(participantId);
+    }
+
 }

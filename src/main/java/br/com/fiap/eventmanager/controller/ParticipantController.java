@@ -40,4 +40,10 @@ public class ParticipantController {
         return ResponseEntity.ok(participant);
     }
 
+    @DeleteMapping("{participant_id}")
+    public ResponseEntity<Void> delete(@PathVariable("participant_id") Long participantId){
+        participantService.delete(participantId);
+        return ResponseEntity.noContent().build();
+    }
+
 }
