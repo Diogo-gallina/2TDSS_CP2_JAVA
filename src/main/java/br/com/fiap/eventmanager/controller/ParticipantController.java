@@ -2,6 +2,7 @@ package br.com.fiap.eventmanager.controller;
 
 import br.com.fiap.eventmanager.dto.participant.CreateParticipantDTO;
 import br.com.fiap.eventmanager.dto.participant.ParticipantDetailsDTO;
+import br.com.fiap.eventmanager.dto.participant.UpdateParticipantDTO;
 import br.com.fiap.eventmanager.services.ParticipantService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,14 @@ public class ParticipantController {
         var participant = participantService.getOne(participantId);
         return ResponseEntity.ok(participant);
     }
+
+    @PutMapping("/{participant_id}")
+    public ResponseEntity<ParticipantDetailsDTO> findOne(@PathVariable("participant_id") Long participantId,
+                                                         @RequestBody @Valid UpdateParticipantDTO participantDTO){
+        var participant = participantService.update(participantId, participantDTO);
+        return ResponseEntity.ok(participant);
+    }
+
 
     @DeleteMapping("{participant_id}")
     public ResponseEntity<Void> delete(@PathVariable("participant_id") Long participantId){
