@@ -36,4 +36,9 @@ public class EventService {
         return new EventDetailsDTO(event);
     }
 
+    @Transactional
+    public void delete(Long eventId){
+        eventRepository.deleteById(eventId);
+    }
+
 }
