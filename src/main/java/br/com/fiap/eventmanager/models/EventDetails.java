@@ -28,7 +28,7 @@ public class EventDetails {
     @Column(name = "event_type", nullable = false, length = 60)
     private EventTypeEnum eventType;
 
-    @OneToOne(mappedBy = "eventDetail")
+    @OneToOne(mappedBy = "eventDetails")
     private Event event;
 
     public EventDetails(CreateEventDTO eventDTO) {

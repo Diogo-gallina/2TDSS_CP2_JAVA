@@ -41,8 +41,7 @@ public record CreateEventDTO(
         @Size(max = 100, message = "Título pode ter no máximo 100 caracteres")
         String organizationEmail,
 
-        @NotBlank(message = "Tipo de evento não pode ser vazio")
-        @Size(max = 60, message = "Tipo de evento pode ter no máximo 60 caracteres")
+        @NotNull(message = "Tipo de evento não pode ser vazio")
         EventTypeEnum eventType
 
 ) {

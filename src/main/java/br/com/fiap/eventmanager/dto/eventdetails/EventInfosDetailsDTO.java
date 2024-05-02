@@ -19,7 +19,7 @@ public record EventInfosDetailsDTO(
         this(
                 eventDetails.getId(),
                 eventDetails.getOrganizationName(),
-                eventDetails.getOrganizationName(),
+                eventDetails.getOrganizationEmail(),
                 eventDetails.getEventType()
         );
     }
