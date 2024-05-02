@@ -36,4 +36,11 @@ public class EventController {
         return ResponseEntity.ok(eventList);
     }
 
+    @GetMapping("{event_id}")
+    public ResponseEntity<EventDetailsDTO> findOne(@PathVariable("event_id") Long eventId){
+        var event = eventService.getOne(eventId);
+        return ResponseEntity.ok(event);
+    }
+
+
 }

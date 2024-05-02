@@ -31,4 +31,9 @@ public class EventService {
                 .map(EventDetailsDTO::new).toList();
     }
 
+    public EventDetailsDTO getOne(Long eventId) {
+        var event = eventRepository.getReferenceById(eventId);
+        return new EventDetailsDTO(event);
+    }
+
 }
