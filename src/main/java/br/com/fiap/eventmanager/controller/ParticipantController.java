@@ -5,9 +5,12 @@ import br.com.fiap.eventmanager.dto.participant.ParticipantDetailsDTO;
 import br.com.fiap.eventmanager.services.ParticipantService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/posts")
@@ -23,6 +26,12 @@ public class ParticipantController {
         var url = uri.path("/posts/{post_id}").buildAndExpand(participant.getId()).toUri();
 
         return ResponseEntity.created(url).body(new ParticipantDetailsDTO(participant));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ParticipantDetailsDTO>> findAll(Pageable pageable){
+        var participantList = participantService.getAll(pageable);
+        return ResponseEntity.ok(participantList);
     }
 
     @GetMapping("/{participant_id}")

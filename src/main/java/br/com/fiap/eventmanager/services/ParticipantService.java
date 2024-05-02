@@ -6,7 +6,10 @@ import br.com.fiap.eventmanager.models.Participant;
 import br.com.fiap.eventmanager.repository.ParticipantRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ParticipantService {
@@ -18,6 +21,11 @@ public class ParticipantService {
     public Participant create(CreateParticipantDTO participantDTO){
         Participant participant = new Participant(participantDTO);
         return participantRepository.save(participant);
+    }
+
+    public List<ParticipantDetailsDTO> getAll(Pageable pageable) {
+        return participantRepository.findAll(pageable).stream()
+                .map(ParticipantDetailsDTO::new).toList();
     }
 
     public ParticipantDetailsDTO getOne(Long participantId) {
