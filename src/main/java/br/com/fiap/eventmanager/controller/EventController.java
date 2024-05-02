@@ -2,6 +2,7 @@ package br.com.fiap.eventmanager.controller;
 
 import br.com.fiap.eventmanager.dto.event.CreateEventDTO;
 import br.com.fiap.eventmanager.dto.event.EventDetailsDTO;
+import br.com.fiap.eventmanager.dto.event.UpdateEventDTO;
 import br.com.fiap.eventmanager.models.Event;
 import br.com.fiap.eventmanager.services.EventService;
 import jakarta.validation.Valid;
@@ -42,12 +43,17 @@ public class EventController {
         return ResponseEntity.ok(event);
     }
 
+    @PutMapping("{event_id}")
+    public ResponseEntity<EventDetailsDTO> findOne(@PathVariable("event_id") Long eventId,
+                                                   @RequestBody @Valid UpdateEventDTO eventDTO){
+        var event = eventService.update(eventId, eventDTO);
+        return ResponseEntity.ok(event);
+    }
+
     @DeleteMapping("{event_id}")
     public ResponseEntity<Void> delete(@PathVariable("event_id") Long eventId){
         eventService.delete(eventId);
         return ResponseEntity.noContent().build();
     }
-
-
 
 }

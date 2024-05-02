@@ -1,6 +1,7 @@
 package br.com.fiap.eventmanager.services;
 
 import br.com.fiap.eventmanager.dto.event.EventDetailsDTO;
+import br.com.fiap.eventmanager.dto.event.UpdateEventDTO;
 import br.com.fiap.eventmanager.dto.eventdetails.EventInfosDetailsDTO;
 import br.com.fiap.eventmanager.models.Event;
 import br.com.fiap.eventmanager.repository.EventDetailsRepository;
@@ -33,6 +34,25 @@ public class EventService {
 
     public EventDetailsDTO getOne(Long eventId) {
         var event = eventRepository.getReferenceById(eventId);
+        return new EventDetailsDTO(event);
+    }
+
+    @Transactional
+    public EventDetailsDTO update(Long eventId, UpdateEventDTO eventDTO){
+        var event = eventRepository.getReferenceById(eventId);
+
+        event.setTitle(eventDTO.title());
+        event.setDescription(eventDTO.description());
+        event.setInitialDate(eventDTO.initialDate());
+        event.setFinalDate(eventDTO.finalDate());
+        event.setMaxParticipantsCapacity(eventDTO.maxParticipantsCapacity());
+        event.setRegistrationValue(eventDTO.registrationValue());
+        event.getEventDetails().setOrganizationName(eventDTO.organizationName());
+        event.getEventDetails().setOrganizationEmail(eventDTO.organizationEmail());
+        event.getEventDetails().setEventType(eventDTO.eventType());
+
+        eventRepository.save(event);
+
         return new EventDetailsDTO(event);
     }
 
