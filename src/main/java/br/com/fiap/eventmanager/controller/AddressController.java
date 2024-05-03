@@ -20,6 +20,7 @@ public class AddressController {
     @Autowired
     AddressService addressService;
 
+    //Events methods
     @PostMapping("event/{event_id}")
     public ResponseEntity<AddressDetailsDTO> createAddresstoEnvent(@PathVariable("event_id") Long eventId,
                                                                    @RequestBody @Valid CreateAddressDTO addressDTO,
@@ -36,6 +37,7 @@ public class AddressController {
         return ResponseEntity.ok(eventAddresses);
     }
 
+    //Participants methods
     @PostMapping("participant/{participant_id}")
     public ResponseEntity<AddressDetailsDTO> createAddresstoParticipant(@PathVariable("participant_id") Long participantId,
                                                                    @RequestBody @Valid CreateAddressDTO addressDTO,
@@ -52,4 +54,10 @@ public class AddressController {
         return ResponseEntity.ok(participantAddresses);
     }
 
+    //Address methods
+    @GetMapping("{address_id}")
+    public ResponseEntity<AddressDetailsDTO> findOne(@PathVariable("address_id") Long addressId){
+        var address = addressService.getOne(addressId);
+        return ResponseEntity.ok(address);
+    }
 }

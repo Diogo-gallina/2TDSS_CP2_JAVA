@@ -52,4 +52,10 @@ public class AddressService {
         return participant.getAddresses().stream().map(AddressDetailsDTO::new).toList();
     }
 
+
+    //Address methods
+    public AddressDetailsDTO getOne(Long addressId){
+        Address address = addressRepository.getReferenceById(addressId);
+        return new AddressDetailsDTO(address);
+    }
 }
