@@ -2,6 +2,7 @@ package br.com.fiap.eventmanager.controller;
 
 import br.com.fiap.eventmanager.dto.event.CreateEventDTO;
 import br.com.fiap.eventmanager.dto.event.EventDetailsDTO;
+import br.com.fiap.eventmanager.dto.event.RegisteredParticipantEventDTO;
 import br.com.fiap.eventmanager.dto.event.UpdateEventDTO;
 import br.com.fiap.eventmanager.dto.participant.EventRecordsForParticipantDTO;
 import br.com.fiap.eventmanager.models.Event;
@@ -41,6 +42,12 @@ public class EventController {
     @GetMapping("{event_id}")
     public ResponseEntity<EventDetailsDTO> findOne(@PathVariable("event_id") Long eventId){
         var event = eventService.getOne(eventId);
+        return ResponseEntity.ok(event);
+    }
+
+    @GetMapping("/participants/{event_id}")
+    public ResponseEntity<RegisteredParticipantEventDTO> getEventParticipants(@PathVariable("event_id") Long eventId){
+        var event = eventService.getEventParticipants(eventId);
         return ResponseEntity.ok(event);
     }
 
