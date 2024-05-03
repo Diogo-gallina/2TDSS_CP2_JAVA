@@ -1,5 +1,6 @@
 package br.com.fiap.eventmanager.models;
 
+import br.com.fiap.eventmanager.dto.address.CreateAddressDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,4 +38,19 @@ public class Address {
     @JoinColumn(name = "participant_id")
     private Participant participant;
 
+    public Address(CreateAddressDTO addressDTO, Event event) {
+        street = addressDTO.street();
+        city = addressDTO.city();
+        cep = addressDTO.cep();
+        number = addressDTO.number();
+        this.event = event;
+    }
+
+    public Address(CreateAddressDTO addressDTO, Participant participant) {
+        street = addressDTO.street();
+        city = addressDTO.city();
+        cep = addressDTO.cep();
+        number = addressDTO.number();
+        this.participant = participant;
+    }
 }

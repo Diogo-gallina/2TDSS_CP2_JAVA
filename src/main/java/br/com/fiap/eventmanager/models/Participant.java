@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 
 @Entity
-@Table(name = "JV_CP2_ADDRESS")
+@Table(name = "JV_CP2_PARTICIPANT")
 @EntityListeners(AuditingEntityListener.class)
 public class Participant {
 
