@@ -2,6 +2,7 @@ package br.com.fiap.eventmanager.services;
 
 import br.com.fiap.eventmanager.dto.address.AddressDetailsDTO;
 import br.com.fiap.eventmanager.dto.address.CreateAddressDTO;
+import br.com.fiap.eventmanager.dto.address.UpdateAddressDTO;
 import br.com.fiap.eventmanager.models.Address;
 import br.com.fiap.eventmanager.models.Event;
 import br.com.fiap.eventmanager.models.Participant;
@@ -10,7 +11,6 @@ import br.com.fiap.eventmanager.repository.EventRepository;
 import br.com.fiap.eventmanager.repository.ParticipantRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -56,6 +56,19 @@ public class AddressService {
     //Address methods
     public AddressDetailsDTO getOne(Long addressId){
         Address address = addressRepository.getReferenceById(addressId);
+        return new AddressDetailsDTO(address);
+    }
+
+    @Transactional
+    public AddressDetailsDTO update(Long addressId, UpdateAddressDTO addressDTO){
+        Address address = addressRepository.getReferenceById(addressId);
+
+        address.setStreet(addressDTO.street());
+        address.setCity(addressDTO.city());
+        address.setCep(addressDTO.cep());
+        address.setNumber(addressDTO.number());
+        addressRepository.save(address);
+
         return new AddressDetailsDTO(address);
     }
 

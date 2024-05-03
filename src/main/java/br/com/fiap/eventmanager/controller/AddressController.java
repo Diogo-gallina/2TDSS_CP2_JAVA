@@ -2,6 +2,7 @@ package br.com.fiap.eventmanager.controller;
 
 import br.com.fiap.eventmanager.dto.address.AddressDetailsDTO;
 import br.com.fiap.eventmanager.dto.address.CreateAddressDTO;
+import br.com.fiap.eventmanager.dto.address.UpdateAddressDTO;
 import br.com.fiap.eventmanager.models.Address;
 import br.com.fiap.eventmanager.services.AddressService;
 import jakarta.validation.Valid;
@@ -58,6 +59,13 @@ public class AddressController {
     @GetMapping("{address_id}")
     public ResponseEntity<AddressDetailsDTO> findOne(@PathVariable("address_id") Long addressId){
         var address = addressService.getOne(addressId);
+        return ResponseEntity.ok(address);
+    }
+
+    @PutMapping("{address_id}")
+    public ResponseEntity<AddressDetailsDTO> update(@PathVariable("address_id") Long addressId,
+                                                    @RequestBody @Valid UpdateAddressDTO addressDTO){
+        var address = addressService.update(addressId, addressDTO);
         return ResponseEntity.ok(address);
     }
 
