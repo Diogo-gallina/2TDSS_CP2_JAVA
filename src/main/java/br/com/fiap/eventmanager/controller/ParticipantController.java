@@ -1,6 +1,7 @@
 package br.com.fiap.eventmanager.controller;
 
 import br.com.fiap.eventmanager.dto.participant.CreateParticipantDTO;
+import br.com.fiap.eventmanager.dto.participant.EventRecordsForParticipantDTO;
 import br.com.fiap.eventmanager.dto.participant.ParticipantDetailsDTO;
 import br.com.fiap.eventmanager.dto.participant.UpdateParticipantDTO;
 import br.com.fiap.eventmanager.services.ParticipantService;
@@ -14,7 +15,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
 
 @RestController
-@RequestMapping("/posts")
+@RequestMapping("/participants")
 public class ParticipantController {
 
     @Autowired
@@ -24,7 +25,7 @@ public class ParticipantController {
     public ResponseEntity<ParticipantDetailsDTO> create(@RequestBody @Valid CreateParticipantDTO participantDTO,
                                                         UriComponentsBuilder uri){
         var participant = participantService.create(participantDTO);
-        var url = uri.path("/posts/{post_id}").buildAndExpand(participant.getId()).toUri();
+        var url = uri.path("/participants/{post_id}").buildAndExpand(participant.getId()).toUri();
 
         return ResponseEntity.created(url).body(new ParticipantDetailsDTO(participant));
     }
@@ -48,6 +49,12 @@ public class ParticipantController {
         return ResponseEntity.ok(participant);
     }
 
+    @PutMapping("/{participant_id}/register/{event_id}")
+    public ResponseEntity<EventRecordsForParticipantDTO> registerEvent(@PathVariable("participant_id") Long participantId,
+                                                                       @PathVariable("event_id") Long eventId){
+        var participant = participantService.registerEvent(participantId, eventId);
+        return ResponseEntity.ok(participant);
+    }
 
     @DeleteMapping("{participant_id}")
     public ResponseEntity<Void> delete(@PathVariable("participant_id") Long participantId){

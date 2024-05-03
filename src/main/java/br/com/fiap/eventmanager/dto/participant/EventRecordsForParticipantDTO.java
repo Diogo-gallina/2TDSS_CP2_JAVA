@@ -11,8 +11,8 @@ public record EventRecordsForParticipantDTO(
 ) {
     public EventRecordsForParticipantDTO(Participant participant){
         this(
-                new ParticipantDetailsDTO(participant),
-                participant.getEvents().stream().map(EventDetailsDTO::new).toList()
+            new ParticipantDetailsDTO(participant),
+            participant.getEvents().stream().map(EventDetailsDTO::new).toList()
         );
     }
 }
