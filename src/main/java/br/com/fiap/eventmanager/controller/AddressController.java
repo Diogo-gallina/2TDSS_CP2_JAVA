@@ -60,4 +60,10 @@ public class AddressController {
         var address = addressService.getOne(addressId);
         return ResponseEntity.ok(address);
     }
+
+    @DeleteMapping("{address_id}")
+    public ResponseEntity<Void> delete(@PathVariable("address_id") Long addressId){
+        addressService.delete(addressId);
+        return ResponseEntity.noContent().build();
+    }
 }

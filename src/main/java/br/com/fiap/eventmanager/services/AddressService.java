@@ -58,4 +58,9 @@ public class AddressService {
         Address address = addressRepository.getReferenceById(addressId);
         return new AddressDetailsDTO(address);
     }
+
+    @Transactional
+    public void delete(Long addressId){
+        addressRepository.deleteById(addressId);
+    }
 }
