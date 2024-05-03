@@ -3,6 +3,7 @@ package br.com.fiap.eventmanager.controller;
 import br.com.fiap.eventmanager.dto.event.CreateEventDTO;
 import br.com.fiap.eventmanager.dto.event.EventDetailsDTO;
 import br.com.fiap.eventmanager.dto.event.UpdateEventDTO;
+import br.com.fiap.eventmanager.dto.participant.EventRecordsForParticipantDTO;
 import br.com.fiap.eventmanager.models.Event;
 import br.com.fiap.eventmanager.services.EventService;
 import jakarta.validation.Valid;
