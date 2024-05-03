@@ -1,5 +1,7 @@
 package br.com.fiap.eventmanager.models;
 
+import br.com.fiap.eventmanager.dto.event.CreateEventDTO;
+import br.com.fiap.eventmanager.dto.event.EventDetailsDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,14 +41,24 @@ public class Event {
     @Column(name = "registration_value", nullable = false)
     private BigDecimal registrationValue;
 
-    @OneToOne
-    @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "event_details_id", nullable = false)
+    private EventDetails eventDetails;
 
-    @OneToMany(mappedBy = "event")
+    @OneToMany(mappedBy = "event", cascade = CascadeType.REMOVE)
     private List<Address> addresses;
 
     @ManyToMany(mappedBy = "events", fetch = FetchType.LAZY)
     private List<Participant> participants;
 
+    public Event(CreateEventDTO eventDTO) {
+        title = eventDTO.title();
+        description = eventDTO.description();
+        initialDate = eventDTO.initialDate();
+        finalDate = eventDTO.finalDate();
+        maxParticipantsCapacity = eventDTO.maxParticipantsCapacity();
+        registrationValue = eventDTO.registrationValue();
+        eventDetails = new EventDetails(eventDTO);
+        eventDetails.setEvent(this);
+    }
 }

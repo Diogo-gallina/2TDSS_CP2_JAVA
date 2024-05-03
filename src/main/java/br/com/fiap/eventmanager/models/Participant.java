@@ -1,5 +1,6 @@
 package br.com.fiap.eventmanager.models;
 
+import br.com.fiap.eventmanager.dto.participant.CreateParticipantDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 
 @Entity
-@Table(name = "JV_CP2_ADDRESS")
+@Table(name = "JV_CP2_PARTICIPANT")
 @EntityListeners(AuditingEntityListener.class)
 public class Participant {
 
@@ -40,7 +41,7 @@ public class Participant {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @OneToMany(mappedBy = "participant")
+    @OneToMany(mappedBy = "participant", cascade = CascadeType.REMOVE)
     private List<Address> addresses;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -50,4 +51,9 @@ public class Participant {
     )
     private List<Event> events;
 
+    public Participant(CreateParticipantDTO participantDTO) {
+        name = participantDTO.name();
+        email = participantDTO.email();
+        cellPhone = participantDTO.cellPhone();
+    }
 }

@@ -1,5 +1,6 @@
 package br.com.fiap.eventmanager.models;
 
+import br.com.fiap.eventmanager.dto.address.CreateAddressDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,12 +30,27 @@ public class Address {
     @Column(name = "address_number", nullable = false)
     private Number number;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "event_id")
     private Event event;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "participant_id")
     private Participant participant;
 
+    public Address(CreateAddressDTO addressDTO, Event event) {
+        street = addressDTO.street();
+        city = addressDTO.city();
+        cep = addressDTO.cep();
+        number = addressDTO.number();
+        this.event = event;
+    }
+
+    public Address(CreateAddressDTO addressDTO, Participant participant) {
+        street = addressDTO.street();
+        city = addressDTO.city();
+        cep = addressDTO.cep();
+        number = addressDTO.number();
+        this.participant = participant;
+    }
 }
