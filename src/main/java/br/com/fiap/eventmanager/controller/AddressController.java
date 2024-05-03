@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/addresses")
 public class AddressController {
@@ -28,6 +30,12 @@ public class AddressController {
         return ResponseEntity.created(url).body(new AddressDetailsDTO(address));
     }
 
+    @GetMapping("event/{event_id}")
+    public ResponseEntity<List<AddressDetailsDTO>> getAllAddressByEnvent(@PathVariable("event_id") Long eventId){
+        var eventAddresses = addressService.getAllEventAddresses(eventId);
+        return ResponseEntity.ok(eventAddresses);
+    }
+
     @PostMapping("participant/{participant_id}")
     public ResponseEntity<AddressDetailsDTO> createAddresstoParticipant(@PathVariable("participant_id") Long participantId,
                                                                    @RequestBody @Valid CreateAddressDTO addressDTO,
@@ -36,6 +44,12 @@ public class AddressController {
         var url = uri.path("/addresses/participant/{participant_id}").buildAndExpand(address.getId()).toUri();
 
         return ResponseEntity.created(url).body(new AddressDetailsDTO(address));
+    }
+
+    @GetMapping("participant/{participant_id}")
+    public ResponseEntity<List<AddressDetailsDTO>> getAllAddressByParticipant(@PathVariable("participant_id") Long participantId){
+        var participantAddresses = addressService.getAllParticipantAddresses(participantId);
+        return ResponseEntity.ok(participantAddresses);
     }
 
 }
