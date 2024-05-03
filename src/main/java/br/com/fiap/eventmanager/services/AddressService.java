@@ -38,6 +38,12 @@ public class AddressService {
         return event.getAddresses().stream().map(AddressDetailsDTO::new).toList();
     }
 
+    @Transactional
+    public void deleteAllEventAddresses(Long eventId){
+        Event event = eventRepository.getReferenceById(eventId);
+        var eventAddressesIds = event.getAddresses().stream().map(Address::getId).toList();
+        addressRepository.deleteAllById(eventAddressesIds);
+    }
 
     //Participants methods
     @Transactional
@@ -50,6 +56,13 @@ public class AddressService {
     public List<AddressDetailsDTO> getAllParticipantAddresses(Long participantId){
         Participant participant = participantRepository.getReferenceById(participantId);
         return participant.getAddresses().stream().map(AddressDetailsDTO::new).toList();
+    }
+
+    @Transactional
+    public void deleteAllParticipantAddresses(Long participantId){
+        Participant participant = participantRepository.getReferenceById(participantId);
+        var participantAddressesIds = participant.getAddresses().stream().map(Address::getId).toList();
+        addressRepository.deleteAllById(participantAddressesIds);
     }
 
 

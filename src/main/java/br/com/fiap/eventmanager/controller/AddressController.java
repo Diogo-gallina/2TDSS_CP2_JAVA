@@ -38,6 +38,12 @@ public class AddressController {
         return ResponseEntity.ok(eventAddresses);
     }
 
+    @DeleteMapping("event/{event_id}")
+    public ResponseEntity<Void> deleteAllEventAddresses(@PathVariable("event_id") Long eventId){
+        addressService.deleteAllEventAddresses(eventId);
+        return ResponseEntity.noContent().build();
+    }
+
     //Participants methods
     @PostMapping("participant/{participant_id}")
     public ResponseEntity<AddressDetailsDTO> createAddresstoParticipant(@PathVariable("participant_id") Long participantId,
@@ -53,6 +59,12 @@ public class AddressController {
     public ResponseEntity<List<AddressDetailsDTO>> getAllAddressByParticipant(@PathVariable("participant_id") Long participantId){
         var participantAddresses = addressService.getAllParticipantAddresses(participantId);
         return ResponseEntity.ok(participantAddresses);
+    }
+
+    @DeleteMapping("participant/{participant_id}")
+    public ResponseEntity<Void> deleteAllParticipantAddresses(@PathVariable("participant_id") Long participantId){
+        addressService.deleteAllParticipantAddresses(participantId);
+        return ResponseEntity.noContent().build();
     }
 
     //Address methods
