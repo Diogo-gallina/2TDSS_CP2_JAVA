@@ -43,7 +43,7 @@ public class ParticipantController {
 
     @PutMapping("/{participant_id}")
     public ResponseEntity<ParticipantDetailsDTO> findOne(@PathVariable("participant_id") Long participantId,
-                                                         @RequestBody @Valid UpdateParticipantDTO participantDTO){
+                                                         @RequestBody @Valid UpdateParticipantDTO participantDTO) {
         var participant = participantService.update(participantId, participantDTO);
         return ResponseEntity.ok(participant);
     }
