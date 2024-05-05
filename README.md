@@ -9,13 +9,13 @@
 
 ![doc_requests.png](doc_requests.png)
 
-## Contribuidores:
+## Contributors:
 
 Diogo Gallina - rm98605
 
 Pedro Henrique Archila - rm550450
 
-Gabriel Melo - rm55
+Gabriel Melo - rm550202
 
 João Dubas - rm76153
 
