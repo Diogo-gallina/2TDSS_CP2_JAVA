@@ -1,3 +1,9 @@
 Relational Model:
 
-![img_1.png](img_1.png)
+![relational_model.png](relational_model.png)
+
+
+Project Request Details(The requests file, are attached to the project):
+
+![doc_requests.png](doc_requests.png)
+
