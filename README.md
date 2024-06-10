@@ -9,14 +9,16 @@
 
 ![doc_requests.png](doc_requests.png)
 
-## Contributors:
-
-Diogo Gallina - rm98605
-
-Pedro Henrique Archila - rm550450
-
-Gabriel Melo - rm550202
-
-João Dubas - rm76153
-
-Pedro Henrique Couto - rm98402
+### 🤝 Contributors
+<table>
+  <tr>
+    <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/88459755?v=4" width="100px;" border-radius='50%' alt="Diogo Gallina's photo on GitHub"/><br>
+        <sub>
+          <b>Diogo Gallina</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
